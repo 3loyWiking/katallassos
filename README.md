@@ -1,12 +1,10 @@
 # kts
 
-A new SRML-based Substrate node, ready for hacking.
+> A standard framework for financial contracts
 
-## Install
+## Introduction
 
-```
-$ git clone git@github.com/Trinkler/kts
-$ ./init.sh
-$ ./build.sh
-$ cargo build
-```
+This Monorepo contains
+
+- [A node implementation](/node/README.md)
+- [A user interface](/ui/README.md)
