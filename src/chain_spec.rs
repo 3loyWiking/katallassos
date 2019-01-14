@@ -16,6 +16,8 @@ pub type ChainSpec = substrate_service::ChainSpec<GenesisConfig>;
 #[derive(Clone, Debug)]
 pub enum Alternative {
 	/// Whatever the current runtime is, with just Alice as an auth.
+	Katallassos,
+	/// Whatever the current runtime is, with just Alice as an auth.
 	Development,
 	/// Whatever the current runtime is, with simple Alice/Bob auths.
 	LocalTestnet,
@@ -25,6 +27,22 @@ impl Alternative {
 	/// Get an actual chain config from one of the alternatives.
 	pub(crate) fn load(self) -> Result<ChainSpec, String> {
 		Ok(match self {
+			Alternative::Katallassos => ChainSpec::from_genesis(
+				"Katallassos",
+				"kts_testnet",
+				|| testnet_genesis(vec![
+					ed25519::Pair::from_seed(b"Alice                           ").public().into(),
+				], vec![
+					ed25519::Pair::from_seed(b"Alice                           ").public().0.into(),
+				],
+					ed25519::Pair::from_seed(b"Alice                           ").public().0.into()
+				),
+				vec![],
+				None,
+				None,
+				None,
+				None
+			),
 			Alternative::Development => ChainSpec::from_genesis(
 				"Development",
 				"dev",
@@ -68,6 +86,7 @@ impl Alternative {
 
 	pub(crate) fn from(s: &str) -> Option<Self> {
 		match s {
+			"kts" => Some(Alternative::Katallassos),
 			"dev" => Some(Alternative::Development),
 			"local" => Some(Alternative::LocalTestnet),
 			_ => None,
