@@ -1,4 +1,4 @@
-# kts
+# katallassos
 
 > A standard framework for financial contracts
 
