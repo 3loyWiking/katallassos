@@ -1,6 +1,6 @@
 # katallassos
 
-> A standard framework for financial contracts
+> A standard framework for finance
 
 ## Introduction
 
